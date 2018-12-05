@@ -33,7 +33,7 @@ app.use(express.static("public"));
 // Routes
 // =============================================================
 require("./routes/apiRoutes.js")(app);
-// require("./routes/htmlRoutes.js")(app);
+require("./routes/htmlRoutes.js")(app);
 
 
 // Start the server
