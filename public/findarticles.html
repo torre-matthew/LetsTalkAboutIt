@@ -9,10 +9,36 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="./styles/letTalkAboutIt.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script id="new-articles-template" type="text/x-handlebars-template">
+    {{#each articles}}
+    <div class="row">
+      <div class="col s12">
+        <p>{{title}}</p>
+        <a class="waves-effect waves-light btn-small" href="{{link}}" target="_blank">Read It</a>
+        <a class="waves-effect waves-light btn-small modal-trigger" href="#modal1">Talk About It</a>
+      </div>
+    </div>   
+    {{/each}}
+  </script>
+
 </head>
+
 <body>
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>Modal Header</h4>
+    <p>A bunch of text</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>
 <main>
-<h1>Yo! You're Finding Articles, Bruh!</h1>
+<div class="container">
+    <div class="article-display-area"></div>
+</div>
 </main>
 
 <!-- jQuery -->

@@ -3,13 +3,11 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 
 // Scraping tools
-// Axios is a promised-based http library, similar to jQuery's Ajax method
-// It works on the client and on the server
 var axios = require("axios");
 var cheerio = require("cheerio");
 
 // Require all models
-// var db = require("./models");
+var db = require("./models");
 
 // process.env.PORT lets the port be set by Heroku
 var PORT = process.env.PORT || 8080;
@@ -28,7 +26,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-// mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/letTalkAboutItDb", { useNewUrlParser: true });
 
 // Routes
 // =============================================================
