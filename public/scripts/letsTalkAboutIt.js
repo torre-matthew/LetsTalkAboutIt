@@ -13,6 +13,14 @@ let getNewArticles = () => {
     });
 }
 
+let addArticleToDB = (title, link) => {
+    
+}
+
+let passArticleInforStorageInDb = (article, link) => {
+    $(".start-convo").attr({"data-article": article, "data-link": link});
+}
+
 
 
 let renderHandlebarsTemplate = (data) => {
@@ -23,3 +31,19 @@ let renderHandlebarsTemplate = (data) => {
 }
 
 getNewArticles();
+
+
+$("body").on("click", ".comment", function(event){
+    let article = $(this).attr("data-article");
+    let link = $(this).attr("data-link");
+    passArticleInforStorageInDb(article, link);
+  });
+
+$("body").on("click", ".start-convo", function(event){
+    event.prevetDefault();
+    $("#textarea1").val("");
+let article = $(this).attr("data-article");
+let link = $(this).attr("data-link");
+console.log(article);
+console.log(link);
+});

@@ -16,25 +16,31 @@
       <div class="col s12">
         <p>{{title}}</p>
         <a class="waves-effect waves-light btn-small" href="{{link}}" target="_blank">Read It</a>
-        <a class="waves-effect waves-light btn-small modal-trigger" href="#modal1">Talk About It</a>
+        <a class="comment waves-effect waves-light btn-small modal-trigger" data-article="{{title}}" data-link="{{link}}" href="#modal1">Talk About It</a>
       </div>
-    </div>   
+    </div> 
     {{/each}}
   </script>
-
 </head>
 
 <body>
-<!-- Modal Structure -->
-<div id="modal1" class="modal">
-  <div class="modal-content">
-    <h4>Modal Header</h4>
-    <p>A bunch of text</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-  </div>
-</div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>{{title}}</h4>
+    <form action="">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Thoughts?</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="start-convo modal-close waves-effect waves-green btn-flat">Let's Talk About It</button>
+      </div>
+    </form>
+    </div>
+
 <main>
 <div class="container">
     <div class="article-display-area"></div>
