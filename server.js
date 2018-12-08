@@ -6,9 +6,6 @@ var mongoose = require("mongoose");
 var axios = require("axios");
 var cheerio = require("cheerio");
 
-// Require all models
-var db = require("./models");
-
 // process.env.PORT lets the port be set by Heroku
 var PORT = process.env.PORT || 8080;
 

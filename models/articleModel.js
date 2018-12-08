@@ -19,8 +19,7 @@ var ArticleSchema = new Schema({
     hasComments: Boolean,
     comments: [
         {
-            type: Schema.Types.ObjectId,
-            ref: "Comments" 
+            commbody: String 
         }
     ]
 });

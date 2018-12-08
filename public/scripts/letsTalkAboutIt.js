@@ -8,12 +8,39 @@ let getNewArticles = () => {
         method: "GET"
     })
     .then(function (data) {
-        // console.log(data);
-        renderHandlebarsTemplate(data)
+        renderHandlebarsTemplate("#new-articles-template", ".article-display-area", data);
     });
 }
 
-let addArticleToDB = (title, link) => {
+let getArticlesWithComments = () => {
+    $.ajax({
+        url: "/allarticles",
+        method: "GET"
+    })
+    .then(function (data) {
+        renderHandlebarsTemplate("#arts-with-comms-template", ".display-area", data);
+    });
+}
+
+let addArticleToDB = (articleTitle, articleUrl, comment) => {
+
+    $.ajax({
+        url: "/add",
+        method: "POST",
+        data: {
+            articleTitle: articleTitle,
+            articleUrl: articleUrl,
+            hasComments: true, 
+            comments: [
+                { 
+                    commbody: comment 
+                }
+            ]
+        }
+    })
+    .then(function (data) {
+        console.log(data);
+    });
     
 }
 
@@ -23,14 +50,15 @@ let passArticleInforStorageInDb = (article, link) => {
 
 
 
-let renderHandlebarsTemplate = (data) => {
-    let source = $("#new-articles-template").text();
+let renderHandlebarsTemplate = (templateID, displayClass, data) => {
+    let source = $(templateID).text();
     let template = Handlebars.compile(source);
     let html = template({articles: data});
-    $(".article-display-area").html(html);
+    $(displayClass).html(html);
 }
 
 getNewArticles();
+getArticlesWithComments();
 
 
 $("body").on("click", ".comment", function(event){
@@ -40,10 +68,13 @@ $("body").on("click", ".comment", function(event){
   });
 
 $("body").on("click", ".start-convo", function(event){
-    event.prevetDefault();
+    event.preventDefault();
+    let comment = $("#textarea1").val().trim();
+    let article = $(this).attr("data-article");
+    let link = $(this).attr("data-link");
+    addArticleToDB(article, link, comment);
+    console.log(article);
+    console.log(link);
+    console.log(comment);
     $("#textarea1").val("");
-let article = $(this).attr("data-article");
-let link = $(this).attr("data-link");
-console.log(article);
-console.log(link);
 });

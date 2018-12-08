@@ -1,5 +1,6 @@
 let axios = require("axios");
 let cheerio = require("cheerio");
+let db = require("../models");
 
 //Get the html from the site I'm going to scrape.
 let firstGetContent = (res) => {
@@ -39,8 +40,29 @@ let articles = [];
 let letsTalkAboutItAPIRoutes = (app) => {
 
 //When the scrape route is hit, return all all the articles to the front end. Don't save it in the db just yet.
+    
+    app.get("/allarticles", function(req, res) {
+        db.Article.find({})
+            .then(function(articleInfo) {
+                res.json(articleInfo);
+            })
+            .catch(function(err) {
+                res.json(err);
+            });
+    });
+
     app.get("/scrape", function(req, res) {
         firstGetContent(res);
+    });
+
+    app.post("/add", function(req, res) {
+        db.Article.create(req.body)
+            .then(function(articleInfo) {
+                res.json(articleInfo);
+            })
+            .catch(function(err) {
+                res.json(err);
+            });
     });
 
 }

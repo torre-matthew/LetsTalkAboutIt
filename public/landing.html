@@ -9,10 +9,53 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="./styles/letTalkAboutIt.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script id="arts-with-comms-template" type="text/x-handlebars-template">
+    {{#each articles}}
+    <div class="row">
+      <div class="col s12">
+        <p>{{articleTitle}}</p>
+        <a class="waves-effect waves-light btn-small" href="{{articleUrl}}" target="_blank">Read It</a>
+        <a class="comment waves-effect waves-light btn-small modal-trigger" data-article="{{articleTitle}}" data-link="{{articleUrl}}" href="#modal1">Talk About It</a>
+      </div>
+    </div> 
+    {{/each}}
+  </script>
 </head>
+
 <body>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>{{title}}</h4>
+    <form>
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Thoughts?</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a type="submit" class="start-convo modal-close waves-effect waves-light btn-small">Let's Talk About It</a>
+      </div>
+    </form>
+    </div>
+
 <main>
-<h1>Yo! You're Home, Bruh!</h1>
+<div class="container">
+    <div class="row">
+      <div class="col s12 l8">
+        <div class="row">
+          <div class="col s12">
+            <div class="display-area"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 l4">
+
+      </div>
+    </div>
+</div>
 </main>
 
 <!-- jQuery -->
