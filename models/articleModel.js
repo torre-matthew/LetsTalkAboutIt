@@ -15,7 +15,10 @@ var ArticleSchema = new Schema({
         type: String,
         required: "Article URL is required"
     },
-    
+    articleImage: {
+        type: String,
+        required: "Article image is required"
+    },
     hasComments: Boolean,
     comments: Array
 });

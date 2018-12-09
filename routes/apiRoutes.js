@@ -20,17 +20,31 @@ let $ = cheerio.load(data);
 let articles = [];
 
 // With cheerio, find each h3-tag with the class "entry-title td-module-title" and loop through the results
-    $("h3.entry-title").each(function(i, element) {
+    // $("h3.entry-title").each(function(i, element) {
 
-    let articleTitle = $(element).find("a").text();
-    let articleLink = $(element).find("a").attr("href");
+    // let articleTitle = $(element).find("a").text();
+    // let articleLink = $(element).find("a").attr("href");
 
-    articles.push({
-        title: articleTitle,
-        link: articleLink
-    });
+    // articles.push({
+    //     title: articleTitle,
+    //     link: articleLink
+    // });
 
-    });
+    // });
+
+    $("div.td-module-thumb").each(function(i, element) {
+
+        let articleTitle = $(element).find("a").attr("title");
+        let articleLink = $(element).find("a").attr("href");
+        let articleImage = $(element).find("img").attr("src"); 
+    
+        articles.push({
+            title: articleTitle,
+            link: articleLink,
+            image: articleImage
+        });
+    
+        });
 
 //At this point I don't want to save these articles in the db yet. I just want the front end to be able to access the data to display it in the client.
     res.json(articles);

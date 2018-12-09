@@ -28,7 +28,7 @@ let getArticlesWithComments = () => {
     });
 }
 
-let addArticleToDB = (articleTitle, articleUrl, comment) => {
+let addArticleToDB = (articleTitle, articleUrl, articleImage, comment) => {
 
     $.ajax({
         url: "/add",
@@ -36,17 +36,21 @@ let addArticleToDB = (articleTitle, articleUrl, comment) => {
         data: {
             articleTitle: articleTitle,
             articleUrl: articleUrl,
+            articleImage: articleImage,
             hasComments: true, 
             comments: [{commbody: comment}]    
         }
     })
     .then(function (data) {
+        console.log(data);
     });
     
 }
 
-let passArticleInforStorageInDb = (article, link) => {
-    $(".start-convo").attr({"data-article": article, "data-link": link});
+//This function passes the data attributes from the button that initiates the modal to leave a comment
+//to the button in the modal that actually submits the form
+let passArticleInforStorageInDb = (article, link, image) => {
+    $(".start-convo").attr({"data-article": article, "data-link": link, "data-image": image});
 }
 
 
@@ -96,7 +100,8 @@ let addNewComment = (articleTitle, comment) => {
 $("body").on("click", ".comment", function(event){
     let article = $(this).attr("data-article");
     let link = $(this).attr("data-link");
-    passArticleInforStorageInDb(article, link);
+    let image = $(this).attr("data-image");
+    passArticleInforStorageInDb(article, link, image);
   });
 
 $("body").on("click", ".start-convo", function(event){
@@ -104,7 +109,8 @@ $("body").on("click", ".start-convo", function(event){
     let comment = $("#textarea1").val().trim();
     let article = $(this).attr("data-article");
     let link = $(this).attr("data-link");
-    addArticleToDB(article, link, comment);
+    let image = $(this).attr("data-image");
+    addArticleToDB(article, link, image, comment);
     $("#textarea1").val("");
 });
 

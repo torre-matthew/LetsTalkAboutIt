@@ -14,9 +14,10 @@
     {{#each articles}}
     <div class="row">
       <div class="col s12">
+        <img src="{{articleImage}}" alt="">
         <p>{{articleTitle}}</p>
         <a class="waves-effect waves-light btn-small" href="{{articleUrl}}" target="_blank">Read It</a>
-        <a class="see-comments waves-effect waves-light btn-small" data-article="{{articleTitle}}" data-link="{{articleUrl}}">What's the word?</a>
+        <a class="see-comments waves-effect waves-light btn-small" data-article="{{articleTitle}}" data-link="{{articleUrl}}" data-image="{{articleImage}}">What's the word?</a>
         <!-- <a class="comment waves-effect waves-light btn-small modal-trigger" data-article="{{articleTitle}}" data-link="{{articleUrl}}" href="#modal1">Talk About It</a> -->
       </div>
     </div> 
@@ -38,8 +39,17 @@
 </head>
 
 <body>
+<!---------------------------------- Nav Content--------------------------------------------------- -->
+<nav>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo">Logo</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="/search">Latest Articles</a></li>
+    </ul>
+  </div>
+</nav>
 
-  <!-- Modal Structure -->
+<!-- ------------------------------------Modal Structure --------------------------------------------->
   <div id="modal1" class="modal">
       <div class="modal-content">
         <h4>{{title}}</h4>
