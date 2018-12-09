@@ -14,10 +14,20 @@
     {{#each articles}}
     <div class="row">
       <div class="col s12">
-        <img src="{{image}}" alt="">
+        <a href="{{link}}" target="_blank"><img src="{{image}}" alt=""></a>
         <p>{{title}}</p>
-        <a class="waves-effect waves-light btn-small" href="{{link}}" target="_blank">Read It</a>
         <a class="comment waves-effect waves-light btn-small modal-trigger" data-article="{{title}}" data-link="{{link}}" data-image="{{image}}" href="#modal1">Talk About It</a>
+      </div>
+    </div> 
+    {{/each}}
+  </script>
+
+  <script id="current-articles-template" type="text/x-handlebars-template">
+    {{#each articles}}
+    <div class="row">
+      <div class="col s12">
+        <p>{{articleTitle}}</p>
+        <img src="{{articleImage}}" alt="">
       </div>
     </div> 
     {{/each}}
@@ -35,10 +45,10 @@
     </div>
   </nav>
 
-  <!-- Modal Structure -->
+  <!----------------------------------------- Modal Structure ------------------------------------------>
   <div id="modal1" class="modal">
       <div class="modal-content">
-        <h4>{{title}}</h4>
+        <div class="current-article-display-area"></div>
     <form>
         <div class="input-field col s12">
           <textarea id="textarea1" class="materialize-textarea"></textarea>

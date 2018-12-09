@@ -48,7 +48,7 @@ let addArticleToDB = (articleTitle, articleUrl, articleImage, comment) => {
 }
 
 //This function passes the data attributes from the button that initiates the modal to leave a comment
-//to the button in the modal that actually submits the form
+//to the button in the modal that actually submits the form.
 let passArticleInforStorageInDb = (article, link, image) => {
     $(".start-convo").attr({"data-article": article, "data-link": link, "data-image": image});
 }
@@ -72,6 +72,21 @@ let getCommentsForArticle = (articleTitle) => {
     .then(function (data) {
         let allCommentsForThisArticle = data[0].comments;
         renderHandlebarsTemplate("#comments-display-template", ".comment-display-area", allCommentsForThisArticle);
+    });
+
+}
+
+let getCurrentArticleContent = (articleTitle) => {
+
+
+    $.ajax({
+        url: "/comments/" + articleTitle,
+        method: "GET"
+    })
+    .then(function (data) {
+        let allCommentsForThisArticle = data;
+        console.log(allCommentsForThisArticle);
+        renderHandlebarsTemplate("#current-articles-template", ".current-article-display-area", allCommentsForThisArticle);
     });
 
 }
@@ -102,6 +117,7 @@ $("body").on("click", ".comment", function(event){
     let link = $(this).attr("data-link");
     let image = $(this).attr("data-image");
     passArticleInforStorageInDb(article, link, image);
+    getCurrentArticleContent(article);
   });
 
 $("body").on("click", ".start-convo", function(event){
