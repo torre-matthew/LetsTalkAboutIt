@@ -1,5 +1,7 @@
 $(document).ready(function(){
     $('.modal').modal();
+    getNewArticles();
+    getArticlesWithComments();
   });
 
 
@@ -88,8 +90,7 @@ let addNewComment = (articleTitle, comment) => {
 
 
 
-getNewArticles();
-getArticlesWithComments();
+
 
 
 $("body").on("click", ".comment", function(event){
