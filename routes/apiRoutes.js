@@ -39,8 +39,9 @@ let articles = [];
 
 let letsTalkAboutItAPIRoutes = (app) => {
 
-//When the scrape route is hit, return all all the articles to the front end. Don't save it in the db just yet.
-    
+////////////////////////GET ROUTES////////////////////////////////
+
+//Get all articles from the db that has associated comments  
     app.get("/allarticles", function(req, res) {
         db.Article.find({})
             .then(function(articleInfo) {
@@ -51,12 +52,47 @@ let letsTalkAboutItAPIRoutes = (app) => {
             });
     });
 
+
+    app.get("/comments/:articleTitle", function(req, res) {
+        db.Article.find({articleTitle: req.params.articleTitle})
+            .then(function(articleInfo) {
+                res.json(articleInfo);
+            })
+            .catch(function(err) {
+                res.json(err);
+            });
+    });
+
+//When the scrape route is hit, return all all the articles to the front end. Don't save it in the db just yet.
     app.get("/scrape", function(req, res) {
         firstGetContent(res);
     });
 
+////////////////////////POST ROUTES////////////////////////////////
+
+//Post article info and comment to the db
     app.post("/add", function(req, res) {
         db.Article.create(req.body)
+            .then(function(articleInfo) {
+                res.json(articleInfo);
+            })
+            .catch(function(err) {
+                res.json(err);
+            });
+    });
+
+
+////////////////////////PUT ROUTES////////////////////////////////
+
+//Add new comments to an article
+    app.put("/addcomment", function(req, res) {
+        db.Article.update(
+            {
+                articleTitle: req.body.articleTitle
+            }, 
+            {
+                $push: {comments: {commbody: req.body.comments}}
+            })
             .then(function(articleInfo) {
                 res.json(articleInfo);
             })

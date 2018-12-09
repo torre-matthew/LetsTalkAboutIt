@@ -17,11 +17,7 @@ var ArticleSchema = new Schema({
     },
     
     hasComments: Boolean,
-    comments: [
-        {
-            commbody: String 
-        }
-    ]
+    comments: Array
 });
 
 let Article = mongoose.model("Article", ArticleSchema);

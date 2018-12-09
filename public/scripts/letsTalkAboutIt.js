@@ -2,6 +2,10 @@ $(document).ready(function(){
     $('.modal').modal();
   });
 
+
+////////////Globals//////////////////////////////
+let articleTitleForAddingCommToDocInDb;
+
 let getNewArticles = () => {
     $.ajax({
         url: "/scrape",
@@ -31,15 +35,10 @@ let addArticleToDB = (articleTitle, articleUrl, comment) => {
             articleTitle: articleTitle,
             articleUrl: articleUrl,
             hasComments: true, 
-            comments: [
-                { 
-                    commbody: comment 
-                }
-            ]
+            comments: [{commbody: comment}]    
         }
     })
     .then(function (data) {
-        console.log(data);
     });
     
 }
@@ -57,6 +56,38 @@ let renderHandlebarsTemplate = (templateID, displayClass, data) => {
     $(displayClass).html(html);
 }
 
+let getCommentsForArticle = (articleTitle) => {
+
+
+    $.ajax({
+        url: "/comments/" + articleTitle,
+        method: "GET"
+    })
+    .then(function (data) {
+        let allCommentsForThisArticle = data[0].comments;
+        renderHandlebarsTemplate("#comments-display-template", ".comment-display-area", allCommentsForThisArticle);
+    });
+
+}
+
+
+let addNewComment = (articleTitle, comment) => {
+
+    $.ajax({
+        url: "/addcomment",
+        method: "PUT",
+        data: {
+            articleTitle: articleTitle,
+            comments: comment    
+        }
+    })
+    .then(function (data) {
+    });
+
+}
+
+
+
 getNewArticles();
 getArticlesWithComments();
 
@@ -73,8 +104,19 @@ $("body").on("click", ".start-convo", function(event){
     let article = $(this).attr("data-article");
     let link = $(this).attr("data-link");
     addArticleToDB(article, link, comment);
-    console.log(article);
-    console.log(link);
-    console.log(comment);
     $("#textarea1").val("");
+});
+
+$("body").on("click", ".see-comments", function(event){
+    articleTitleForAddingCommToDocInDb = $(this).attr("data-article");
+//Pass the article title to this function so that only comments from the selected article is presented.
+    getCommentsForArticle(articleTitleForAddingCommToDocInDb);
+  });
+
+$("body").on("click", ".add-comment", function(event){
+    event.preventDefault();
+    let comment = $("#add-comment-textarea").val().trim();
+    addNewComment(articleTitleForAddingCommToDocInDb, comment);
+    getCommentsForArticle(articleTitleForAddingCommToDocInDb);
+    $("#add-comment-textarea").val("")
 });
