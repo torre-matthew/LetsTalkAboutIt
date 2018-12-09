@@ -22,8 +22,26 @@ app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
 
+let databaseUri = "mongodb://localhost/letTalkAboutItDb"; 
+
+if (process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI);
+}
+else {
+  mongoose.connect(databaseUri);
+}
+
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/letTalkAboutItDb", { useNewUrlParser: true });
+let db = mongoose.connection;
+
+db.on('error', function(err) {
+  console.log('Mongoose Error: ', err);
+});
+
+db.once('open', function() {
+  console.log("Mongoose Connection Successful!!!");
+});
+
 
 // Routes
 // =============================================================
