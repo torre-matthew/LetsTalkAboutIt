@@ -14,13 +14,32 @@ h1 {
 }
 
 nav {
-    margin-bottom: 30px;
     text-align: center;
     background-color: #36454F;
 }
 
 .intro {
     text-align: center;
+    background-color: #36454F; 
+    min-height: 50vh;
+    height: auto;
+	display: flex;
+	align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    color: whitesmoke;
+}
+
+.search-intro {
+    text-align: center;
+    background-color: #36454F; 
+    min-height: 25vh;
+    height: auto;
+	display: flex;
+	align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    color: whitesmoke;
 }
 
 .current-article-modal-content {
