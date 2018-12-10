@@ -134,6 +134,7 @@ $("body").on("click", ".see-comments", function(event){
     articleTitleForAddingCommToDocInDb = $(this).attr("data-article");
 //Pass the article title to this function so that only comments from the selected article is presented.
     getCommentsForArticle(articleTitleForAddingCommToDocInDb);
+    getCurrentArticleContent(articleTitleForAddingCommToDocInDb);
   });
 
 $("body").on("click", ".add-comment", function(event){

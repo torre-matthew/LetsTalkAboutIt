@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <title>Lets Talk About It</title>
-  <link href="https://fonts.googleapis.com/css?family=Handlee|Roboto:300|Special+Elite|Spectral" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Handlee|Roboto:300|Special+Elite|Spectral|Calligraffitti" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
@@ -13,7 +13,7 @@
   <script id="arts-with-comms-template" type="text/x-handlebars-template">
     {{#each articles}}
     <div class="col s12 m6 l4">
-      <div class="card">
+      <div class="card z-depth-5">
         <div class="card-image waves-effect waves-block waves-light">
           <a href="{{articleUrl}}" target="_blank"><img src="{{articleImage}}" alt=""></a>
         </div>
@@ -21,7 +21,7 @@
             <p>{{articleTitle}}</p>
         </div>
         <div class="card-action">
-            <a href="#comments-section" class="see-comments waves-effect waves-light btn-small activator" data-article="{{articleTitle}}" data-link="{{articleUrl}}" data-image="{{articleImage}}">See the Chatter</a>
+            <a class="see-comments waves-effect waves-light btn-small modal-trigger" data-article="{{articleTitle}}" data-link="{{articleUrl}}" data-image="{{articleImage}}" href="#modal1">The Chatter</a>
         </div>
       </div>
     </div>
@@ -30,15 +30,26 @@
 
   <script id="comments-display-template" type="text/x-handlebars-template">
     {{#each articles}}
-        <p>{{commbody}}</p>
+        <p class="comm-body-ptag">{{commbody}}</p>
     {{/each}}
     <form>
         <div class="input-field col s12">
-          <textarea id="add-comment-textarea" class="materialize-textarea"></textarea>
+          <textarea id="add-comment-textarea" class="materialize-textarea" required></textarea>
           <label for="add-comment-textarea">Thoughts?</label>
         </div>
         <a type="submit" class="add-comment waves-effect waves-light btn-small">Add Comment</a>
     </form>
+  </script>
+
+  <script id="current-articles-template" type="text/x-handlebars-template">
+    {{#each articles}}
+    <div class="row">
+      <div class="current-article-modal-content col s12">
+        <p>{{articleTitle}}</p>
+        <img src="{{articleImage}}" alt="">
+      </div>
+    </div> 
+    {{/each}}
   </script>
 </head>
 
@@ -46,7 +57,7 @@
 <!---------------------------------- Nav Content----------------------------------------------------->
 <nav>
   <div class="nav-wrapper">
-    <a href="#" class="brand-logo">Logo</a>
+    <a href="/home" class="brand-logo">The Chatter Box</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a href="/search">Latest Articles</a></li>
     </ul>
@@ -56,17 +67,10 @@
 <!-- ------------------------------------Modal Structure --------------------------------------------->
   <div id="modal1" class="modal">
       <div class="modal-content">
-        <h4>{{title}}</h4>
-    <form>
-        <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea"></textarea>
-          <label for="textarea1">Thoughts?</label>
-        </div>
+        <div class="current-article-display-area"></div>
+        <div><p>The Chatter</p></div>
+        <div class="col comment-display-area s12 l2"></div>
       </div>
-      <div class="modal-footer">
-        <a type="submit" class="start-convo modal-close waves-effect waves-light btn-small">Let's Talk About It</a>
-      </div>
-    </form>
     </div>
 
 
@@ -74,17 +78,23 @@
     
     
 <main>
-<!-- <div class="container"> -->
+  <!--------------------------------- Intro     -------------------------------------------->
+  <div class="container intro">
     <div class="row">
-      <div class="col articles-with-comments s12 l10">
-          <div class="display-area"></div>
-      </div>
-      <div id="comments-section" class="col comment-display-area s12 l2"></div>
+      <h1>Welcome to The Chatter Box</h1>
+      <h5>Share Interesting Articles, Spark Insightful Conversation</h5>
+      <h6>Here's what the community is chatting about now...</h6>
     </div>
+  </div>
 
-    
-    
-<!-- </div> -->
+  <!--------------------------------- Article Display Area     -------------------------------------------->
+  <div class="container">
+    <div class="row">
+      <div class="col articles-with-comments s12">
+        <div class="display-area"></div>
+      </div>
+    </div>
+  </div>
 </main>
 
 <!-- jQuery -->

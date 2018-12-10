@@ -12,13 +12,19 @@
 
   <script id="new-articles-template" type="text/x-handlebars-template">
     {{#each articles}}
-    <div class="row">
-      <div class="col s12">
-        <a href="{{link}}" target="_blank"><img src="{{image}}" alt=""></a>
-        <p>{{title}}</p>
-        <a class="comment waves-effect waves-light btn-small modal-trigger" data-article="{{title}}" data-link="{{link}}" data-image="{{image}}" href="#modal1">Talk About It</a>
+    <div class="col s12 m6 l6">
+        <div class="card z-depth-5">
+          <div class="card-image waves-effect waves-block waves-light">
+            <a href="{{link}}" target="_blank"><img src="{{image}}" alt=""></a>
+          </div>
+          <div class="card-content">
+              <p>{{title}}</p>
+          </div>
+          <div class="card-action">
+              <a class="comment waves-effect waves-light btn-small modal-trigger" data-article="{{title}}" data-link="{{link}}" data-image="{{image}}" href="#modal1">Start The Chatter</a>
+          </div>
+        </div>
       </div>
-    </div> 
     {{/each}}
   </script>
 
@@ -27,7 +33,7 @@
     <div class="row">
       <div class="col s12">
         <p>{{articleTitle}}</p>
-        <img src="{{articleImage}}" alt="">
+        <img class="modal-image" src="{{articleImage}}" alt="">
       </div>
     </div> 
     {{/each}}
@@ -38,9 +44,9 @@
 <!---------------------------------- Nav Content--------------------------------------------------- -->
 <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Logo</a>
+      <a href="/home" class="brand-logo">The Chatter Box</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/home">The Discussion Spot</a></li>
+        <li><a href="/home">The Chatter Box</a></li>
       </ul>
     </div>
   </nav>
@@ -56,14 +62,14 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a type="submit" class="start-convo modal-close waves-effect waves-light btn-small">Let's Talk About It</a>
+        <a type="submit" class="start-convo modal-close waves-effect waves-light btn-small">Get Chattin'</a>
       </div>
     </form>
     </div>
 
 <main>
 <div class="container">
-    <div class="article-display-area"></div>
+    <div class="row article-display-area"></div>
 </div>
 </main>
 

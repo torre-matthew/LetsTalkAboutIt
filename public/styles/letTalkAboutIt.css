@@ -1,5 +1,6 @@
 body {
-    background-image: url("../images/darkness.png");
+    background-image: url("../images/concrete_wall_2.png");
+    font-family: 'Spectral', serif;
 }
 
 img {
@@ -7,10 +8,42 @@ img {
     height: 200px;
 }
 
-nav {
-    margin-bottom: 30px;
+h1 {
+    font-family: 'Calligraffitti', cursive;
+    font-weight: bold;
 }
 
-.comment-display-area {
-    background-color: lime;
+nav {
+    margin-bottom: 30px;
+    text-align: center;
+    background-color: #36454F;
+}
+
+.intro {
+    text-align: center;
+}
+
+.current-article-modal-content {
+    text-align: center;
+}
+
+.comm-body-ptag {
+    border: solid black 1px;
+    padding: 10px;
+}
+
+.btn, .btn-large, .btn-small {
+    background-color: #6A879B;
+}
+
+.card {
+    background-color: #3B4C57;
+}
+
+.card .card-content p {
+    color: whitesmoke;
+}
+
+.card-action {
+    text-align: center;
 }
