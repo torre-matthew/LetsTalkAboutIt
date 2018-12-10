@@ -2,7 +2,7 @@
 
 #### Share Interesting Articles, Spark Insightful Conversation
 
-Find articles you're interested in. Commenting on those articles will add them to the community portal where other Chatter Boxers can join in on the conversation.
+This app gives you a place to read interesting articles. When you comment on those articles, you'll be adding them to the community portal where other Chatter Boxers can join in on the conversation.
 
 [Check it out here](https://young-brook-36013.herokuapp.com)
 
