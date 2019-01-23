@@ -64,6 +64,10 @@ nav {
     background-color: #3B4C57;
 }
 
+.card .card-content {
+    height: 100px;
+}
+
 .card .card-content p {
     color: whitesmoke;
 }

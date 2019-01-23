@@ -12,7 +12,7 @@
 
   <script id="new-articles-template" type="text/x-handlebars-template">
     {{#each articles}}
-    <div class="col s12 m6 l6">
+    <div class="col s12 m6 l3">
         <div class="card z-depth-5">
           <div class="card-image waves-effect waves-block waves-light">
             <a href="{{link}}" target="_blank"><img src="{{image}}" alt=""></a>
@@ -72,12 +72,13 @@
     <div class="container">
       <div class="row">
         <h5>Find an interesting article. Add comments to share it with the Chatter Box community.</h5>
+        <p>Once you add a comment, the article will automatically disply in the <a href="/home">community</a> for others to chime in on.</p>
         <p>Click images to read the article.</p>
       </div>
     </div>
   </section>
 
-<div class="container">
+<div class="">
     <div class="row article-display-area"></div>
 </div>
 </main>
