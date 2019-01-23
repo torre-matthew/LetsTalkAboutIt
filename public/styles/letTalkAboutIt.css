@@ -23,6 +23,10 @@ nav {
     background-color: #36454F;
 }
 
+nav ul a {
+    padding: 0 35px;
+}
+
 .intro {
     text-align: center;
     background-color: #36454F; 
